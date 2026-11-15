@@ -1,0 +1,16 @@
+.env
+.venv/
+venv/
+node_modules/
+frontend/dist/
+__pycache__/
+*.py[cod]
+backend/app.db
+backend/saved_models/candidates/
+backend/saved_models/*.joblib
+backend/reports/*.png
+backend/reports/evaluation.json
+backend/reports/feature_importance.csv
+backend/reports/model_comparison.csv
+data/versions/
+.DS_Store
