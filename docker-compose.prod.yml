@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_PATH: /app/state/app.db
+      MODEL_PATH: /app/backend/saved_models/active_model.joblib
+      REPORT_DIR: /app/backend/reports
+    volumes:
+      - ./backend/saved_models:/app/backend/saved_models
+      - ./backend/reports:/app/backend/reports
+      - ./data:/app/data
+      - backend_db:/app/state
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_db:
