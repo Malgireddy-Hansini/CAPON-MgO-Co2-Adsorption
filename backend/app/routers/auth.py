@@ -301,20 +301,21 @@ def developer_login(data: Login, request: Request, response: Response):
             'Developer login locked for five minutes after repeated failed attempts'
         )
     username_allowed = data.username.strip().lower() in ('developer', 'admin')
-hash_available = bool(dev_hash)
-password_matches = (
-    verify_password(data.password, dev_hash)
-    if hash_available else False
-)
+    hash_available = bool(dev_hash)
 
-print(
-    f"DEV LOGIN CHECK: username_allowed={username_allowed}, "
-    f"hash_available={hash_available}, "
-    f"password_matches={password_matches}",
-    flush=True
-)
+    password_matches = (
+        verify_password(data.password, dev_hash)
+        if hash_available else False
+    )
 
-ok = username_allowed and hash_available and password_matches
+    print(
+        f"DEV LOGIN CHECK: username_allowed={username_allowed}, "
+        f"hash_available={hash_available}, "
+        f"password_matches={password_matches}",
+        flush=True
+    )
+
+    ok = username_allowed and hash_available and password_matches
    
 
     record(data.username, ok, 'developer login')
