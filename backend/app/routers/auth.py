@@ -167,7 +167,7 @@ def active_dev_hash():
             "SELECT value FROM app_settings WHERE key='developer_password_hash'"
         ).fetchone()
 
-    return row['value'] if row else _dev_hash
+    return _dev_hash if _dev_hash else (row['value'] if row else None)
 
 
 # USER REGISTRATION
