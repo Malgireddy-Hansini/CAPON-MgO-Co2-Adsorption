@@ -27,3 +27,8 @@ backend/saved_models/candidates/
 # Generated temporary files
 data/versions/
 .DS_Store
+
+# Environment secrets
+.env
+.env.*
+!.env.example
